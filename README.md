@@ -36,8 +36,8 @@ else, from analysis to report and demo, runs locally on CPU.
 ### Takeaways
 
 1. **Fine-tuning a small modern CNN beats the published baseline by 13.7 points** (91.2% vs
-   77.5%). A plain logistic regression on frozen CLIP features gets within 2 points of it, and it
-   trains in about a minute on a CPU.
+   77.5%). A plain logistic regression on frozen CLIP features gets within 2 points of it, and
+   fitting it takes under a minute on a CPU.
 2. **CLIP does not know Vietnamese food zero-shot**: 52.7% top-1, even with descriptive English
    prompts. The right dish is usually in its top 5 (86%), though, so the features are there and a
    linear probe recovers them.
