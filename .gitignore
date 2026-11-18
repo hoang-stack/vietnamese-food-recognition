@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+# Kaggle outputs, models and the upload folder (images are never stored in this repo)
+data/
+artifacts/
+kaggle/output/
+kaggle/kernel-metadata.json
+*.onnx
+.vscode/
+.idea/
+.DS_Store

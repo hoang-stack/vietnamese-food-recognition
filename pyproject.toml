@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vnfood"
+version = "0.1.0"
+description = "Recognising 30 Vietnamese dishes: a data audit (near-duplicates, label noise), four models from zero-shot CLIP to fine-tuned CNNs, calibration, and a CPU-only ONNX demo."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = ["numpy>=1.26", "pillow>=10", "matplotlib>=3.8"]
+
+[project.optional-dependencies]
+serve = ["onnxruntime>=1.17", "fastapi>=0.110", "uvicorn[standard]>=0.29"]
+dev = ["fastapi>=0.110", "httpx>=0.27", "pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+vnfood = "vnfood.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+vnfood = ["static/*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "NPY", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["NPY002"]
+"kaggle/*" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+filterwarnings = ["ignore:Using `httpx` with `starlette.testclient` is deprecated"]
