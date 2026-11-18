@@ -113,22 +113,32 @@ def plot_leakage(o, best: str, out: Path) -> Path:
     ax.set_ylabel("test photos")
     ax.set_title(f"{100 * leak['share']:.1f}% of test photos have a near-copy in training")
     ax = axes[1]
-    vals = [leak["accuracy_clean"], leak["accuracy_all"], leak["accuracy_duplicates"]]
-    names = ["clean test\nphotos", "all test\nphotos", "near-\nduplicates"]
-    ax.bar(range(3), [100 * v for v in vals], width=0.55, color=[ACCENT, MUTED, SECOND])
-    for i, v in enumerate(vals):
+    dup = analysis.near_duplicates(o)
+    correct = (o.logits[best]["Test"].argmax(1) == o.labels("Test")).astype(float)
+    groups = [
+        ("clean test photos", correct[~dup], ACCENT),
+        ("all test photos", correct, MUTED),
+        ("near-duplicates", correct[dup], SECOND),
+    ]
+    for i, (_name, c, color) in enumerate(groups):
+        lo, hi = analysis.bootstrap_accuracy(c)
+        ax.plot([100 * lo, 100 * hi], [i, i], color=color, alpha=0.5)
+        ax.plot(100 * c.mean(), i, "o", ms=8, color=color, mec=SURFACE, mew=1.5)
         ax.annotate(
-            f"{100 * v:.1f}%",
-            (i, 100 * v),
-            xytext=(0, 3),
+            f"{100 * c.mean():.1f}%  (n = {len(c):,})",
+            (100 * hi, i),
+            xytext=(6, 0),
             textcoords="offset points",
-            ha="center",
+            va="center",
             fontsize=9,
             color=INK_2,
         )
-    ax.set_xticks(range(3), names)
-    ax.set_ylim(min(100 * min(vals) - 10, 80), 100)
-    ax.grid(axis="x", visible=False)
+    ax.set_yticks(range(3), [g[0] for g in groups])
+    ax.set_ylim(-0.6, 2.6)
+    ax.set_xlim(85, 100)
+    ax.grid(axis="y", visible=False)
+    ax.tick_params(axis="y", length=0)
+    ax.set_xlabel("top-1 accuracy (%), 95% CI")
     ax.set_title(f"Accuracy of {LABELS.get(best, best).split(',')[0]}")
     fig.tight_layout()
     return _save(fig, out / "leakage.png")
@@ -138,11 +148,14 @@ def plot_calibration(o, best: str, out: Path) -> Path:
     lg = o.logits[best]
     y_val, y_te = o.labels("Validate"), o.labels("Test")
     t = fit_temperature(lg["Validate"], y_val)
-    fig, ax = plt.subplots(figsize=(5.2, 4.4))
+    fig, (ax, axh) = plt.subplots(
+        2, 1, figsize=(5.4, 5.6), sharex=True, gridspec_kw={"height_ratios": [3, 1]}
+    )
     ax.plot([0, 1], [0, 1], color=BASELINE, lw=1.0)
+    scaled = softmax(lg["Test"], t)
     for probs, color, label in (
-        (softmax(lg["Test"]), SECOND, "raw"),
-        (softmax(lg["Test"], t), ACCENT, f"temperature T = {t:.2f}"),
+        (softmax(lg["Test"]), SECOND, "raw (label smoothing)"),
+        (scaled, ACCENT, f"temperature-scaled, T = {t:.2f}"),
     ):
         pts = reliability(probs, y_te, bins=10)
         ax.plot(
@@ -155,12 +168,22 @@ def plot_calibration(o, best: str, out: Path) -> Path:
             mew=1.0,
             label=label,
         )
-    ax.set_xlabel("confidence")
     ax.set_ylabel("accuracy")
-    ax.set_xlim(0, 1.02)
     ax.set_ylim(0, 1.02)
     ax.legend(loc="upper left", fontsize=9)
     ax.set_title("Reliability on test photos")
+    axh.hist(
+        scaled.max(axis=1),
+        bins=np.linspace(0, 1, 21),
+        color=ACCENT,
+        alpha=0.8,
+        edgecolor=SURFACE,
+        linewidth=0.5,
+    )
+    axh.set_xlabel("confidence")
+    axh.set_ylabel("photos")
+    axh.set_xlim(0, 1.02)
+    fig.tight_layout()
     return _save(fig, out / "calibration.png")
 
 
