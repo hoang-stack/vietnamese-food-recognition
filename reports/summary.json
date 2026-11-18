@@ -1,0 +1,712 @@
+{
+ "models": [
+  {
+   "model": "convnext_tiny.fb_in22k_ft_in1k",
+   "top1": 0.9121031746031746,
+   "top1_ci": [
+    0.9041666666666667,
+    0.9198412698412698
+   ],
+   "top5": 0.9821428571428571,
+   "macro_f1": 0.9127613302771731,
+   "ece": 0.07421190074038887,
+   "ece_scaled": 0.017803380697492568,
+   "temperature": 0.7845201960454284
+  },
+  {
+   "model": "CLIP linear probe",
+   "top1": 0.8928571428571429,
+   "top1_ci": [
+    0.8841269841269841,
+    0.9009920634920635
+   ],
+   "top5": 0.9876984126984127,
+   "macro_f1": 0.8939225221536307,
+   "ece": 0.07579617289250046,
+   "ece_scaled": 0.014662973416254554,
+   "temperature": 0.7539740597487382
+  },
+  {
+   "model": "efficientnet_b0.ra_in1k",
+   "top1": 0.8898809523809523,
+   "top1_ci": [
+    0.881547619047619,
+    0.8978174603174603
+   ],
+   "top5": 0.9767857142857143,
+   "macro_f1": 0.8889608276771072,
+   "ece": 0.08707362638697738,
+   "ece_scaled": 0.011608057278430211,
+   "temperature": 0.7703736107461722
+  },
+  {
+   "model": "CLIP zero-shot",
+   "top1": 0.5265873015873016,
+   "top1_ci": [
+    0.5125,
+    0.5400843253968254
+   ],
+   "top5": 0.8642857142857143,
+   "macro_f1": 0.5031351909765187,
+   "ece": 0.034658840691877746,
+   "ece_scaled": 0.023069787041712846,
+   "temperature": 1.1645607562442861
+  }
+ ],
+ "leakage": {
+  "CLIP linear probe": {
+   "test_images": 5040,
+   "near_duplicates": 439,
+   "share": 0.0871031746031746,
+   "exact_phash": 64,
+   "dup_same_label": 0.9134396355353075,
+   "accuracy_all": 0.8928571428571429,
+   "accuracy_duplicates": 0.9407744874715261,
+   "accuracy_clean": 0.8882851554009998
+  },
+  "CLIP zero-shot": {
+   "test_images": 5040,
+   "near_duplicates": 439,
+   "share": 0.0871031746031746,
+   "exact_phash": 64,
+   "dup_same_label": 0.9134396355353075,
+   "accuracy_all": 0.5265873015873016,
+   "accuracy_duplicates": 0.6150341685649203,
+   "accuracy_clean": 0.5181482286459466
+  },
+  "convnext_tiny.fb_in22k_ft_in1k": {
+   "test_images": 5040,
+   "near_duplicates": 439,
+   "share": 0.0871031746031746,
+   "exact_phash": 64,
+   "dup_same_label": 0.9134396355353075,
+   "accuracy_all": 0.9121031746031746,
+   "accuracy_duplicates": 0.9271070615034168,
+   "accuracy_clean": 0.9106715931319278
+  },
+  "efficientnet_b0.ra_in1k": {
+   "test_images": 5040,
+   "near_duplicates": 439,
+   "share": 0.0871031746031746,
+   "exact_phash": 64,
+   "dup_same_label": 0.9134396355353075,
+   "accuracy_all": 0.8898809523809523,
+   "accuracy_duplicates": 0.9179954441913439,
+   "accuracy_clean": 0.8871984351227994
+  }
+ },
+ "label_noise": [
+  {
+   "class": "Banh canh",
+   "name": "Bánh canh",
+   "images": 674,
+   "suspect_share": 0.6231454005934718
+  },
+  {
+   "class": "Hu tieu",
+   "name": "Hủ tiếu",
+   "images": 688,
+   "suspect_share": 0.5130813953488372
+  },
+  {
+   "class": "Banh duc",
+   "name": "Bánh đúc",
+   "images": 463,
+   "suspect_share": 0.46436285097192226
+  },
+  {
+   "class": "Nem chua",
+   "name": "Nem chua",
+   "images": 379,
+   "suspect_share": 0.3324538258575198
+  },
+  {
+   "class": "Bun rieu",
+   "name": "Bún riêu",
+   "images": 805,
+   "suspect_share": 0.3031055900621118
+  },
+  {
+   "class": "Pho",
+   "name": "Phở",
+   "images": 564,
+   "suspect_share": 0.29432624113475175
+  },
+  {
+   "class": "Banh bot loc",
+   "name": "Bánh bột lọc",
+   "images": 503,
+   "suspect_share": 0.2882703777335984
+  },
+  {
+   "class": "Mi quang",
+   "name": "Mì Quảng",
+   "images": 618,
+   "suspect_share": 0.2783171521035599
+  },
+  {
+   "class": "Bun mam",
+   "name": "Bún mắm",
+   "images": 541,
+   "suspect_share": 0.2088724584103512
+  },
+  {
+   "class": "Banh cuon",
+   "name": "Bánh cuốn",
+   "images": 798,
+   "suspect_share": 0.19172932330827067
+  },
+  {
+   "class": "Canh chua",
+   "name": "Canh chua",
+   "images": 577,
+   "suspect_share": 0.19064124783362218
+  },
+  {
+   "class": "Banh tet",
+   "name": "Bánh tét",
+   "images": 480,
+   "suspect_share": 0.18333333333333332
+  },
+  {
+   "class": "Chao long",
+   "name": "Cháo lòng",
+   "images": 751,
+   "suspect_share": 0.17576564580559254
+  },
+  {
+   "class": "Banh can",
+   "name": "Bánh căn",
+   "images": 520,
+   "suspect_share": 0.17115384615384616
+  },
+  {
+   "class": "Banh beo",
+   "name": "Bánh bèo",
+   "images": 451,
+   "suspect_share": 0.16851441241685144
+  },
+  {
+   "class": "Bun bo Hue",
+   "name": "Bún bò Huế",
+   "images": 1071,
+   "suspect_share": 0.16806722689075632
+  },
+  {
+   "class": "Banh gio",
+   "name": "Bánh giò",
+   "images": 448,
+   "suspect_share": 0.16741071428571427
+  },
+  {
+   "class": "Cao lau",
+   "name": "Cao lầu",
+   "images": 432,
+   "suspect_share": 0.1527777777777778
+  },
+  {
+   "class": "Banh chung",
+   "name": "Bánh chưng",
+   "images": 354,
+   "suspect_share": 0.1327683615819209
+  },
+  {
+   "class": "Xoi xeo",
+   "name": "Xôi xéo",
+   "images": 366,
+   "suspect_share": 0.13114754098360656
+  },
+  {
+   "class": "Banh trang nuong",
+   "name": "Bánh tráng nướng",
+   "images": 556,
+   "suspect_share": 0.11510791366906475
+  },
+  {
+   "class": "Bun thit nuong",
+   "name": "Bún thịt nướng",
+   "images": 522,
+   "suspect_share": 0.08620689655172414
+  },
+  {
+   "class": "Banh xeo",
+   "name": "Bánh xèo",
+   "images": 821,
+   "suspect_share": 0.08404384896467722
+  },
+  {
+   "class": "Banh pia",
+   "name": "Bánh pía",
+   "images": 310,
+   "suspect_share": 0.07741935483870968
+  },
+  {
+   "class": "Banh khot",
+   "name": "Bánh khọt",
+   "images": 584,
+   "suspect_share": 0.07534246575342465
+  },
+  {
+   "class": "Com tam",
+   "name": "Cơm tấm",
+   "images": 659,
+   "suspect_share": 0.04552352048558422
+  },
+  {
+   "class": "Goi cuon",
+   "name": "Gỏi cuốn",
+   "images": 598,
+   "suspect_share": 0.03177257525083612
+  },
+  {
+   "class": "Banh mi",
+   "name": "Bánh mì",
+   "images": 935,
+   "suspect_share": 0.026737967914438502
+  },
+  {
+   "class": "Bun dau mam tom",
+   "name": "Bún đậu mắm tôm",
+   "images": 640,
+   "suspect_share": 0.025
+  },
+  {
+   "class": "Ca kho to",
+   "name": "Cá kho tộ",
+   "images": 473,
+   "suspect_share": 0.023255813953488372
+  }
+ ],
+ "confusions": [
+  {
+   "true": "Bánh canh",
+   "predicted": "Hủ tiếu",
+   "count": 15
+  },
+  {
+   "true": "Bún riêu",
+   "predicted": "Bún bò Huế",
+   "count": 13
+  },
+  {
+   "true": "Bún bò Huế",
+   "predicted": "Phở",
+   "count": 12
+  },
+  {
+   "true": "Phở",
+   "predicted": "Bún bò Huế",
+   "count": 12
+  },
+  {
+   "true": "Hủ tiếu",
+   "predicted": "Phở",
+   "count": 10
+  },
+  {
+   "true": "Bún bò Huế",
+   "predicted": "Bún riêu",
+   "count": 9
+  },
+  {
+   "true": "Hủ tiếu",
+   "predicted": "Bánh canh",
+   "count": 9
+  },
+  {
+   "true": "Phở",
+   "predicted": "Hủ tiếu",
+   "count": 9
+  },
+  {
+   "true": "Cao lầu",
+   "predicted": "Mì Quảng",
+   "count": 8
+  },
+  {
+   "true": "Bánh canh",
+   "predicted": "Bún mắm",
+   "count": 7
+  },
+  {
+   "true": "Bánh xèo",
+   "predicted": "Bánh tráng nướng",
+   "count": 7
+  },
+  {
+   "true": "Bánh đúc",
+   "predicted": "Bánh cuốn",
+   "count": 6
+  },
+  {
+   "true": "Bánh khọt",
+   "predicted": "Bánh căn",
+   "count": 6
+  },
+  {
+   "true": "Bánh tét",
+   "predicted": "Bánh chưng",
+   "count": 6
+  },
+  {
+   "true": "Bún bò Huế",
+   "predicted": "Bánh canh",
+   "count": 6
+  }
+ ],
+ "per_class": [
+  {
+   "class": "Bánh canh",
+   "accuracy": 0.7927461139896373,
+   "images": 193
+  },
+  {
+   "class": "Phở",
+   "accuracy": 0.808641975308642,
+   "images": 162
+  },
+  {
+   "class": "Hủ tiếu",
+   "accuracy": 0.817258883248731,
+   "images": 197
+  },
+  {
+   "class": "Bánh đúc",
+   "accuracy": 0.8195488721804511,
+   "images": 133
+  },
+  {
+   "class": "Bánh bột lọc",
+   "accuracy": 0.8680555555555556,
+   "images": 144
+  },
+  {
+   "class": "Bánh tét",
+   "accuracy": 0.8768115942028986,
+   "images": 138
+  },
+  {
+   "class": "Nem chua",
+   "accuracy": 0.8807339449541285,
+   "images": 109
+  },
+  {
+   "class": "Bún bò Huế",
+   "accuracy": 0.8823529411764706,
+   "images": 306
+  },
+  {
+   "class": "Bún mắm",
+   "accuracy": 0.896774193548387,
+   "images": 155
+  },
+  {
+   "class": "Canh chua",
+   "accuracy": 0.896969696969697,
+   "images": 165
+  },
+  {
+   "class": "Bánh giò",
+   "accuracy": 0.8992248062015504,
+   "images": 129
+  },
+  {
+   "class": "Bún thịt nướng",
+   "accuracy": 0.9,
+   "images": 150
+  },
+  {
+   "class": "Bún riêu",
+   "accuracy": 0.9047619047619048,
+   "images": 231
+  },
+  {
+   "class": "Cao lầu",
+   "accuracy": 0.9112903225806451,
+   "images": 124
+  },
+  {
+   "class": "Bánh cuốn",
+   "accuracy": 0.9122807017543859,
+   "images": 228
+  },
+  {
+   "class": "Bánh bèo",
+   "accuracy": 0.9147286821705426,
+   "images": 129
+  },
+  {
+   "class": "Bánh khọt",
+   "accuracy": 0.9161676646706587,
+   "images": 167
+  },
+  {
+   "class": "Bánh chưng",
+   "accuracy": 0.9215686274509803,
+   "images": 102
+  },
+  {
+   "class": "Bánh xèo",
+   "accuracy": 0.9234042553191489,
+   "images": 235
+  },
+  {
+   "class": "Bánh tráng nướng",
+   "accuracy": 0.9245283018867925,
+   "images": 159
+  },
+  {
+   "class": "Bánh căn",
+   "accuracy": 0.9261744966442953,
+   "images": 149
+  },
+  {
+   "class": "Gỏi cuốn",
+   "accuracy": 0.9476744186046512,
+   "images": 172
+  },
+  {
+   "class": "Mì Quảng",
+   "accuracy": 0.9548022598870056,
+   "images": 177
+  },
+  {
+   "class": "Cháo lòng",
+   "accuracy": 0.9627906976744186,
+   "images": 215
+  },
+  {
+   "class": "Cá kho tộ",
+   "accuracy": 0.9705882352941176,
+   "images": 136
+  },
+  {
+   "class": "Cơm tấm",
+   "accuracy": 0.9788359788359788,
+   "images": 189
+  },
+  {
+   "class": "Bánh mì",
+   "accuracy": 0.9850746268656716,
+   "images": 268
+  },
+  {
+   "class": "Bánh pía",
+   "accuracy": 0.9887640449438202,
+   "images": 89
+  },
+  {
+   "class": "Xôi xéo",
+   "accuracy": 0.9904761904761905,
+   "images": 105
+  },
+  {
+   "class": "Bún đậu mắm tôm",
+   "accuracy": 1.0,
+   "images": 184
+  }
+ ],
+ "kaggle_metrics": {
+  "counts": {
+   "Train": 17581,
+   "Validate": 2515,
+   "Test": 5040
+  },
+  "models": {
+   "CLIP zero-shot": {
+    "temperature": 1.1645607562442861,
+    "Validate": {
+     "top1": 0.5244532803180915,
+     "top5": 0.8532803180914513,
+     "ece": 0.036765198963536895,
+     "ece_temperature": 0.03492000322218681
+    },
+    "Test": {
+     "top1": 0.5265873015873016,
+     "top5": 0.8642857142857143,
+     "ece": 0.034658840691877746,
+     "ece_temperature": 0.023069787041712846
+    }
+   },
+   "CLIP linear probe": {
+    "temperature": 0.7539740597453491,
+    "Validate": {
+     "top1": 0.8890656063618291,
+     "top5": 0.9836978131212724,
+     "ece": 0.07624349382354947,
+     "ece_temperature": 0.01861649906691077
+    },
+    "Test": {
+     "top1": 0.8928571428571429,
+     "top5": 0.9876984126984127,
+     "ece": 0.07579617289250046,
+     "ece_temperature": 0.014662973415493082
+    },
+    "C": 10.0
+   },
+   "convnext_tiny.fb_in22k_ft_in1k": {
+    "temperature": 0.7845201960454355,
+    "Validate": {
+     "top1": 0.9149105367793241,
+     "top5": 0.9817097415506958,
+     "ece": 0.0811916734571485,
+     "ece_temperature": 0.019877462056474685
+    },
+    "Test": {
+     "top1": 0.9121031746031746,
+     "top5": 0.9821428571428571,
+     "ece": 0.07421190074038887,
+     "ece_temperature": 0.017803380697492568
+    },
+    "history": [
+     {
+      "epoch": 1,
+      "loss": 1.7561716348150351,
+      "val_top1": 0.841351888667992,
+      "seconds": 123.93806576728821
+     },
+     {
+      "epoch": 2,
+      "loss": 0.9975540801121371,
+      "val_top1": 0.8898608349900596,
+      "seconds": 119.84235620498657
+     },
+     {
+      "epoch": 3,
+      "loss": 0.847086049561953,
+      "val_top1": 0.8854870775347913,
+      "seconds": 119.72004985809326
+     },
+     {
+      "epoch": 4,
+      "loss": 0.7744228028467972,
+      "val_top1": 0.8946322067594433,
+      "seconds": 119.73963689804077
+     },
+     {
+      "epoch": 5,
+      "loss": 0.7215350207186093,
+      "val_top1": 0.9021868787276341,
+      "seconds": 119.77937889099121
+     },
+     {
+      "epoch": 6,
+      "loss": 0.6958177716192537,
+      "val_top1": 0.9049701789264414,
+      "seconds": 119.40059185028076
+     },
+     {
+      "epoch": 7,
+      "loss": 0.6798723131200693,
+      "val_top1": 0.9085487077534792,
+      "seconds": 118.89076590538025
+     },
+     {
+      "epoch": 8,
+      "loss": 0.6697516165075511,
+      "val_top1": 0.9105367793240556,
+      "seconds": 120.64475631713867
+     },
+     {
+      "epoch": 9,
+      "loss": 0.6626831937010271,
+      "val_top1": 0.9137176938369781,
+      "seconds": 119.85686802864075
+     },
+     {
+      "epoch": 10,
+      "loss": 0.6625567896522745,
+      "val_top1": 0.9149105367793241,
+      "seconds": 120.72870779037476
+     }
+    ],
+    "parameters": 27843198,
+    "best_epoch": 10
+   },
+   "efficientnet_b0.ra_in1k": {
+    "temperature": 0.7703736107461722,
+    "Validate": {
+     "top1": 0.8950298210735587,
+     "top5": 0.9753479125248509,
+     "ece": 0.09228595758882717,
+     "ece_temperature": 0.015449810051775861
+    },
+    "Test": {
+     "top1": 0.8898809523809523,
+     "top5": 0.9767857142857143,
+     "ece": 0.08707362638697738,
+     "ece_temperature": 0.011608057278430211
+    },
+    "history": [
+     {
+      "epoch": 1,
+      "loss": 2.057813047492591,
+      "val_top1": 0.7805168986083499,
+      "seconds": 114.512531042099
+     },
+     {
+      "epoch": 2,
+      "loss": 1.1807208953112582,
+      "val_top1": 0.8385685884691849,
+      "seconds": 110.69702672958374
+     },
+     {
+      "epoch": 3,
+      "loss": 0.9917028272238961,
+      "val_top1": 0.8421471172962227,
+      "seconds": 110.81134247779846
+     },
+     {
+      "epoch": 4,
+      "loss": 0.8928696145541477,
+      "val_top1": 0.8604373757455268,
+      "seconds": 110.3046555519104
+     },
+     {
+      "epoch": 5,
+      "loss": 0.8161486404655623,
+      "val_top1": 0.8747514910536779,
+      "seconds": 110.32622766494751
+     },
+     {
+      "epoch": 6,
+      "loss": 0.7646173145214137,
+      "val_top1": 0.8783300198807157,
+      "seconds": 110.4380407333374
+     },
+     {
+      "epoch": 7,
+      "loss": 0.7273014938309245,
+      "val_top1": 0.8950298210735587,
+      "seconds": 110.5620391368866
+     },
+     {
+      "epoch": 8,
+      "loss": 0.7093306014137547,
+      "val_top1": 0.8930417495029821,
+      "seconds": 110.44666838645935
+     },
+     {
+      "epoch": 9,
+      "loss": 0.6979370987328299,
+      "val_top1": 0.890258449304175,
+      "seconds": 109.87090063095093
+     },
+     {
+      "epoch": 10,
+      "loss": 0.6941702185321028,
+      "val_top1": 0.8934393638170974,
+      "seconds": 110.57575297355652
+     }
+    ],
+    "parameters": 4045978,
+    "best_epoch": 7
+   }
+  },
+  "onnx": {
+   "max_abs_diff_vs_pytorch": 5.245208740234375e-06,
+   "cpu_ms_per_image": 9.192073345184326,
+   "size_mb": 16.15859
+  }
+ }
+}
